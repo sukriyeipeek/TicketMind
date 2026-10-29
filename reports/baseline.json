@@ -1,0 +1,650 @@
+{
+  "artifact_schema": 1,
+  "model_version": "tfidf-lr-0.1.0-345158bf8821",
+  "dataset_type": "synthetic_demo",
+  "data_sha256": "345158bf882131cbe3654de507aac6ed9b848cb2d4639ac7c1f6e20bf01a5217",
+  "python_version": "3.12.14",
+  "sklearn_version": "1.9.1",
+  "labels": [
+    "kargo",
+    "odeme",
+    "iade",
+    "teknik"
+  ],
+  "review_policy": "always_review_demo",
+  "random_state": 42,
+  "model": "TF-IDF word (1,2) + LogisticRegression(C=2, class_weight=balanced)",
+  "selection_policy": "Fixed educational configuration; no test-driven tuning; no OOD detector or calibrated review threshold.",
+  "limitations": [
+    "AI-authored synthetic data; scores do not estimate real customer performance.",
+    "Scenario groups are split-disjoint; this does not guarantee semantic independence.",
+    "All predictions require human review; model scores are uncalibrated.",
+    "Entity rules are not trained NER and have no held-out extraction score yet."
+  ],
+  "split_summary": {
+    "train": {
+      "n": 96,
+      "groups": 32,
+      "labels": {
+        "kargo": 24,
+        "odeme": 24,
+        "iade": 24,
+        "teknik": 24
+      }
+    },
+    "validation": {
+      "n": 24,
+      "groups": 8,
+      "labels": {
+        "kargo": 6,
+        "odeme": 6,
+        "iade": 6,
+        "teknik": 6
+      }
+    },
+    "test": {
+      "n": 24,
+      "groups": 8,
+      "labels": {
+        "kargo": 6,
+        "odeme": 6,
+        "iade": 6,
+        "teknik": 6
+      }
+    }
+  },
+  "validation": {
+    "n": 24,
+    "accuracy": 0.9166666666666666,
+    "macro_f1": 0.9163752913752914,
+    "per_class": {
+      "kargo": {
+        "precision": 1.0,
+        "recall": 0.8333333333333334,
+        "f1-score": 0.9090909090909091,
+        "support": 6.0
+      },
+      "odeme": {
+        "precision": 0.8333333333333334,
+        "recall": 0.8333333333333334,
+        "f1-score": 0.8333333333333334,
+        "support": 6.0
+      },
+      "iade": {
+        "precision": 0.8571428571428571,
+        "recall": 1.0,
+        "f1-score": 0.9230769230769231,
+        "support": 6.0
+      },
+      "teknik": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 6.0
+      },
+      "accuracy": 0.9166666666666666,
+      "macro avg": {
+        "precision": 0.9226190476190477,
+        "recall": 0.9166666666666667,
+        "f1-score": 0.9163752913752914,
+        "support": 24.0
+      },
+      "weighted avg": {
+        "precision": 0.9226190476190476,
+        "recall": 0.9166666666666666,
+        "f1-score": 0.9163752913752914,
+        "support": 24.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        5,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        5,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        6
+      ]
+    ],
+    "confusion_labels": [
+      "kargo",
+      "odeme",
+      "iade",
+      "teknik"
+    ],
+    "predictions": [
+      {
+        "id": "kargo-025",
+        "expected": "kargo",
+        "predicted": "odeme"
+      },
+      {
+        "id": "kargo-026",
+        "expected": "kargo",
+        "predicted": "kargo"
+      },
+      {
+        "id": "kargo-027",
+        "expected": "kargo",
+        "predicted": "kargo"
+      },
+      {
+        "id": "kargo-028",
+        "expected": "kargo",
+        "predicted": "kargo"
+      },
+      {
+        "id": "kargo-029",
+        "expected": "kargo",
+        "predicted": "kargo"
+      },
+      {
+        "id": "kargo-030",
+        "expected": "kargo",
+        "predicted": "kargo"
+      },
+      {
+        "id": "odeme-025",
+        "expected": "odeme",
+        "predicted": "odeme"
+      },
+      {
+        "id": "odeme-026",
+        "expected": "odeme",
+        "predicted": "odeme"
+      },
+      {
+        "id": "odeme-027",
+        "expected": "odeme",
+        "predicted": "odeme"
+      },
+      {
+        "id": "odeme-028",
+        "expected": "odeme",
+        "predicted": "odeme"
+      },
+      {
+        "id": "odeme-029",
+        "expected": "odeme",
+        "predicted": "iade"
+      },
+      {
+        "id": "odeme-030",
+        "expected": "odeme",
+        "predicted": "odeme"
+      },
+      {
+        "id": "iade-025",
+        "expected": "iade",
+        "predicted": "iade"
+      },
+      {
+        "id": "iade-026",
+        "expected": "iade",
+        "predicted": "iade"
+      },
+      {
+        "id": "iade-027",
+        "expected": "iade",
+        "predicted": "iade"
+      },
+      {
+        "id": "iade-028",
+        "expected": "iade",
+        "predicted": "iade"
+      },
+      {
+        "id": "iade-029",
+        "expected": "iade",
+        "predicted": "iade"
+      },
+      {
+        "id": "iade-030",
+        "expected": "iade",
+        "predicted": "iade"
+      },
+      {
+        "id": "teknik-025",
+        "expected": "teknik",
+        "predicted": "teknik"
+      },
+      {
+        "id": "teknik-026",
+        "expected": "teknik",
+        "predicted": "teknik"
+      },
+      {
+        "id": "teknik-027",
+        "expected": "teknik",
+        "predicted": "teknik"
+      },
+      {
+        "id": "teknik-028",
+        "expected": "teknik",
+        "predicted": "teknik"
+      },
+      {
+        "id": "teknik-029",
+        "expected": "teknik",
+        "predicted": "teknik"
+      },
+      {
+        "id": "teknik-030",
+        "expected": "teknik",
+        "predicted": "teknik"
+      }
+    ]
+  },
+  "test": {
+    "n": 24,
+    "accuracy": 0.7916666666666666,
+    "macro_f1": 0.7937062937062938,
+    "per_class": {
+      "kargo": {
+        "precision": 0.8,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.7272727272727273,
+        "support": 6.0
+      },
+      "odeme": {
+        "precision": 0.7142857142857143,
+        "recall": 0.8333333333333334,
+        "f1-score": 0.7692307692307693,
+        "support": 6.0
+      },
+      "iade": {
+        "precision": 0.7142857142857143,
+        "recall": 0.8333333333333334,
+        "f1-score": 0.7692307692307693,
+        "support": 6.0
+      },
+      "teknik": {
+        "precision": 1.0,
+        "recall": 0.8333333333333334,
+        "f1-score": 0.9090909090909091,
+        "support": 6.0
+      },
+      "accuracy": 0.7916666666666666,
+      "macro avg": {
+        "precision": 0.8071428571428572,
+        "recall": 0.7916666666666667,
+        "f1-score": 0.7937062937062938,
+        "support": 24.0
+      },
+      "weighted avg": {
+        "precision": 0.807142857142857,
+        "recall": 0.7916666666666666,
+        "f1-score": 0.7937062937062938,
+        "support": 24.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        4,
+        0,
+        2,
+        0
+      ],
+      [
+        1,
+        5,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        5,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        5
+      ]
+    ],
+    "confusion_labels": [
+      "kargo",
+      "odeme",
+      "iade",
+      "teknik"
+    ],
+    "predictions": [
+      {
+        "id": "kargo-031",
+        "expected": "kargo",
+        "predicted": "kargo"
+      },
+      {
+        "id": "kargo-032",
+        "expected": "kargo",
+        "predicted": "kargo"
+      },
+      {
+        "id": "kargo-033",
+        "expected": "kargo",
+        "predicted": "kargo"
+      },
+      {
+        "id": "kargo-034",
+        "expected": "kargo",
+        "predicted": "kargo"
+      },
+      {
+        "id": "kargo-035",
+        "expected": "kargo",
+        "predicted": "iade"
+      },
+      {
+        "id": "kargo-036",
+        "expected": "kargo",
+        "predicted": "iade"
+      },
+      {
+        "id": "odeme-031",
+        "expected": "odeme",
+        "predicted": "odeme"
+      },
+      {
+        "id": "odeme-032",
+        "expected": "odeme",
+        "predicted": "odeme"
+      },
+      {
+        "id": "odeme-033",
+        "expected": "odeme",
+        "predicted": "kargo"
+      },
+      {
+        "id": "odeme-034",
+        "expected": "odeme",
+        "predicted": "odeme"
+      },
+      {
+        "id": "odeme-035",
+        "expected": "odeme",
+        "predicted": "odeme"
+      },
+      {
+        "id": "odeme-036",
+        "expected": "odeme",
+        "predicted": "odeme"
+      },
+      {
+        "id": "iade-031",
+        "expected": "iade",
+        "predicted": "iade"
+      },
+      {
+        "id": "iade-032",
+        "expected": "iade",
+        "predicted": "iade"
+      },
+      {
+        "id": "iade-033",
+        "expected": "iade",
+        "predicted": "iade"
+      },
+      {
+        "id": "iade-034",
+        "expected": "iade",
+        "predicted": "iade"
+      },
+      {
+        "id": "iade-035",
+        "expected": "iade",
+        "predicted": "odeme"
+      },
+      {
+        "id": "iade-036",
+        "expected": "iade",
+        "predicted": "iade"
+      },
+      {
+        "id": "teknik-031",
+        "expected": "teknik",
+        "predicted": "teknik"
+      },
+      {
+        "id": "teknik-032",
+        "expected": "teknik",
+        "predicted": "odeme"
+      },
+      {
+        "id": "teknik-033",
+        "expected": "teknik",
+        "predicted": "teknik"
+      },
+      {
+        "id": "teknik-034",
+        "expected": "teknik",
+        "predicted": "teknik"
+      },
+      {
+        "id": "teknik-035",
+        "expected": "teknik",
+        "predicted": "teknik"
+      },
+      {
+        "id": "teknik-036",
+        "expected": "teknik",
+        "predicted": "teknik"
+      }
+    ]
+  },
+  "dummy_test": {
+    "n": 24,
+    "accuracy": 0.25,
+    "macro_f1": 0.1,
+    "per_class": {
+      "kargo": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 6.0
+      },
+      "odeme": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 6.0
+      },
+      "iade": {
+        "precision": 0.25,
+        "recall": 1.0,
+        "f1-score": 0.4,
+        "support": 6.0
+      },
+      "teknik": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 6.0
+      },
+      "accuracy": 0.25,
+      "macro avg": {
+        "precision": 0.0625,
+        "recall": 0.25,
+        "f1-score": 0.1,
+        "support": 24.0
+      },
+      "weighted avg": {
+        "precision": 0.0625,
+        "recall": 0.25,
+        "f1-score": 0.10000000000000002,
+        "support": 24.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        0,
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        0,
+        6,
+        0
+      ]
+    ],
+    "confusion_labels": [
+      "kargo",
+      "odeme",
+      "iade",
+      "teknik"
+    ],
+    "predictions": [
+      {
+        "id": "kargo-031",
+        "expected": "kargo",
+        "predicted": "iade"
+      },
+      {
+        "id": "kargo-032",
+        "expected": "kargo",
+        "predicted": "iade"
+      },
+      {
+        "id": "kargo-033",
+        "expected": "kargo",
+        "predicted": "iade"
+      },
+      {
+        "id": "kargo-034",
+        "expected": "kargo",
+        "predicted": "iade"
+      },
+      {
+        "id": "kargo-035",
+        "expected": "kargo",
+        "predicted": "iade"
+      },
+      {
+        "id": "kargo-036",
+        "expected": "kargo",
+        "predicted": "iade"
+      },
+      {
+        "id": "odeme-031",
+        "expected": "odeme",
+        "predicted": "iade"
+      },
+      {
+        "id": "odeme-032",
+        "expected": "odeme",
+        "predicted": "iade"
+      },
+      {
+        "id": "odeme-033",
+        "expected": "odeme",
+        "predicted": "iade"
+      },
+      {
+        "id": "odeme-034",
+        "expected": "odeme",
+        "predicted": "iade"
+      },
+      {
+        "id": "odeme-035",
+        "expected": "odeme",
+        "predicted": "iade"
+      },
+      {
+        "id": "odeme-036",
+        "expected": "odeme",
+        "predicted": "iade"
+      },
+      {
+        "id": "iade-031",
+        "expected": "iade",
+        "predicted": "iade"
+      },
+      {
+        "id": "iade-032",
+        "expected": "iade",
+        "predicted": "iade"
+      },
+      {
+        "id": "iade-033",
+        "expected": "iade",
+        "predicted": "iade"
+      },
+      {
+        "id": "iade-034",
+        "expected": "iade",
+        "predicted": "iade"
+      },
+      {
+        "id": "iade-035",
+        "expected": "iade",
+        "predicted": "iade"
+      },
+      {
+        "id": "iade-036",
+        "expected": "iade",
+        "predicted": "iade"
+      },
+      {
+        "id": "teknik-031",
+        "expected": "teknik",
+        "predicted": "iade"
+      },
+      {
+        "id": "teknik-032",
+        "expected": "teknik",
+        "predicted": "iade"
+      },
+      {
+        "id": "teknik-033",
+        "expected": "teknik",
+        "predicted": "iade"
+      },
+      {
+        "id": "teknik-034",
+        "expected": "teknik",
+        "predicted": "iade"
+      },
+      {
+        "id": "teknik-035",
+        "expected": "teknik",
+        "predicted": "iade"
+      },
+      {
+        "id": "teknik-036",
+        "expected": "teknik",
+        "predicted": "iade"
+      }
+    ]
+  }
+}

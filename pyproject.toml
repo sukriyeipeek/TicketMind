@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ticketmind-tr"
+version = "0.1.0"
+description = "Türkçe destek talepleri için açıklanabilir NLP başlangıç projesi"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "scikit-learn>=1.6,<2",
+  "joblib>=1.4,<2",
+  "fastapi>=0.115,<1",
+  "uvicorn>=0.30,<1",
+  "httpx>=0.27,<1",
+  "streamlit>=1.40,<2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10"]
+
+[project.scripts]
+ticketmind-train = "ticketmind.train:main"
+ticketmind-predict = "ticketmind.predict:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+

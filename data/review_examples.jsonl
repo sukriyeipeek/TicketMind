@@ -1,0 +1,12 @@
+{"id":"review-validation-01","text":"Merhaba, kolay gelsin!","reason":"greeting","split":"validation","source":"ai_authored_synthetic"}
+{"id":"review-validation-02","text":"Ankara'da yarın hava nasıl olacak?","reason":"out_of_scope","split":"validation","source":"ai_authored_synthetic"}
+{"id":"review-validation-03","text":"İki ayrı talebim var: kargomun yerini öğrenmek ve kartımdaki çift çekimi düzeltmek. İkisini de inceleyin.","reason":"multiple_equal_intents","split":"validation","source":"ai_authored_synthetic"}
+{"id":"review-validation-04","text":"İade etmek istemiyorum; yalnızca paketin ne zaman ulaşacağını öğrenmek istiyorum.","reason":"negation","split":"validation","source":"ai_authored_synthetic"}
+{"id":"review-validation-05","text":"Daha önce konuştuğumuz şey yine olmadı, onu düzeltir misiniz?","reason":"insufficient_context","split":"validation","source":"ai_authored_synthetic"}
+{"id":"review-validation-06","text":"Bu iş böyle olmaz ya, resmen bekliyorum hâlâ.","reason":"ambiguous","split":"validation","source":"ai_authored_synthetic"}
+{"id":"review-test-01","text":"Teşekkürler, sorunum çözüldü. İyi çalışmalar.","reason":"no_active_request","split":"test","source":"ai_authored_synthetic"}
+{"id":"review-test-02","text":"Bana mercimek çorbası tarifi verir misin?","reason":"out_of_scope","split":"test","source":"ai_authored_synthetic"}
+{"id":"review-test-03","text":"Hem giriş hatası için teknik destek hem de ayrı bir ürün için iade başvurusu istiyorum; ikisi de aynı derecede önemli.","reason":"multiple_equal_intents","split":"test","source":"ai_authored_synthetic"}
+{"id":"review-test-04","text":"Ödemede sorun yok, ücret doğru çekildi. Açılmayan ekran yüzünden uygulamayı kullanamıyorum.","reason":"negation","split":"test","source":"ai_authored_synthetic"}
+{"id":"review-test-05","text":"TM-9999 E99","reason":"insufficient_context","split":"test","source":"ai_authored_synthetic"}
+{"id":"review-test-06","text":"Onu geri yapar mısınız? Hangisi olduğunu önceki mesajda yazmıştım.","reason":"ambiguous","split":"test","source":"ai_authored_synthetic"}

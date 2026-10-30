@@ -1,148 +1,52 @@
-"""HTTP boundary for the trained, local TicketMind model.
-
-The API only loads an existing artifact. Training is an explicit offline step.
-"""
-
-from __future__ import annotations
-
-from contextlib import asynccontextmanager
-import os
-from pathlib import Path
-import pickle
-from typing import Annotated, Literal
-
-from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import JSONResponse
-from pydantic import (
-    BaseModel,
-    ConfigDict,
-    Field,
-    StrictFloat,
-    StrictInt,
-    StrictStr,
-    field_validator,
-    model_validator,
-)
-
-from ticketmind.service import TicketService
-
-
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-NOT_READY_MESSAGE = (
-    "Model hazır değil. Proje klasöründe `python -m ticketmind.train` komutunu "
-    "çalıştırın ve API'yi yeniden başlatın."
-)
-
+"""English Banking77 API. No synthetic policies or generated banking advice."""
+import json
+import threading
+from typing import Literal
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from ticketmind.banking import BankingService, REPORT, DATA, MODELS, labels, read_csv
 
 class AnalyzeRequest(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
-    text: Annotated[StrictStr, Field(min_length=1, max_length=4000)]
-
-    @field_validator("text")
+    model_config=ConfigDict(extra='forbid')
+    text: StrictStr=Field(min_length=1,max_length=4000)
+    model: Literal['word','char']='word'
+    @field_validator('text')
     @classmethod
-    def require_visible_text(cls, text: str) -> str:
-        if not text.strip():
-            raise ValueError("Mesaj yalnızca boşluklardan oluşamaz.")
-        # Keep original text and offsets; normalization belongs to the model.
-        return text
+    def visible(cls,value):
+        if not value.strip(): raise ValueError('Message must not be blank')
+        return value
 
-
-class EntityResponse(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
-    field: Literal["order_id", "error_code", "product"]
-    value: Annotated[StrictStr, Field(min_length=1)]
-    start: Annotated[StrictInt, Field(ge=0)]
-    end: Annotated[StrictInt, Field(gt=0)]
-    method: Annotated[StrictStr, Field(min_length=1)]
-
-    @model_validator(mode="after")
-    def require_ordered_span(self) -> EntityResponse:
-        if self.end <= self.start:
-            raise ValueError("end, start değerinden büyük olmalıdır.")
-        return self
-
-
-class AnalyzeResponse(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
-    category: Literal["kargo", "odeme", "iade", "teknik"] | None
-    model_score: Annotated[StrictFloat, Field(ge=0.0, le=1.0)]
-    score_type: Literal["uncalibrated_model_score"]
-    needs_review: Literal[True]
-    review_reasons: list[Annotated[StrictStr, Field(min_length=1)]]
-    entities: list[EntityResponse]
-    model_version: Annotated[StrictStr, Field(min_length=1)]
-
-
-class HealthResponse(BaseModel):
-    status: Literal["ready", "not_ready"]
-    model_loaded: bool
-    dataset_type: Literal["synthetic_demo"]
-
-
-def create_app(model_path: Path | None = None) -> FastAPI:
-    """Create an isolated app; an explicit model path also makes tests simple."""
-    artifact_path = Path(
-        model_path
-        if model_path is not None
-        else os.environ.get(
-            "TICKETMIND_MODEL_PATH", str(PROJECT_ROOT / "models" / "baseline.joblib")
-        )
-    )
-
-    @asynccontextmanager
-    async def lifespan(application: FastAPI):
-        application.state.service = None
+def create_app():
+    app=FastAPI(title='TicketMind · Banking77',version='0.3.0')
+    cache={}
+    lock=threading.Lock()
+    @app.get('/health')
+    def health():
+        return {'dataset':'banking77','language':'en','synthetic':False,'models':{k:(MODELS/(k+'.joblib')).exists() for k in ('word','char')}}
+    @app.get('/labels')
+    def categories(): return {'labels':labels()}
+    @app.post('/analyze')
+    def analyze(payload:AnalyzeRequest):
         try:
-            application.state.service = TicketService(artifact_path)
-        except (OSError, ValueError, EOFError, TypeError, KeyError, pickle.UnpicklingError):
-            # Do not expose paths, model internals, or customer messages.
-            # A missing or invalid artifact is an unavailable model, not training.
-            application.state.service = None
-        yield
-        application.state.service = None
+            with lock:
+                if payload.model not in cache: cache[payload.model]=BankingService(payload.model)
+                service=cache[payload.model]
+            return service.analyze(payload.text)
+        except (OSError,ValueError,AttributeError) as error:
+            raise HTTPException(503,'Train Banking77 models first: python -m ticketmind.banking') from error
+    @app.get('/experiments')
+    def experiments():
+        if not REPORT.exists(): raise HTTPException(404,'No Banking77 report yet')
+        return json.loads(REPORT.read_text(encoding='utf-8'))
+    @app.get('/examples')
+    def examples(label:str,limit:int=10):
+        if label not in labels() or not 1<=limit<=50: raise HTTPException(422,'Invalid label or limit')
+        return {'source':'official_training_csv','examples':[r for r in read_csv('train.csv') if r['label']==label][:limit]}
+    @app.get('/data/manifest')
+    def manifest():
+        path=DATA/'manifest.json'
+        if not path.exists(): raise HTTPException(404,'Data preparation not completed')
+        return json.loads(path.read_text(encoding='utf-8'))
+    return app
 
-    application = FastAPI(
-        title="TicketMind-TR",
-        description=(
-            "Türkçe destek talebi analizi. Sentetik veriyle hazırlanmış öğrenme "
-            "demosudur; bütün sonuçlar insan incelemesi gerektirir."
-        ),
-        version="0.1.0",
-        lifespan=lifespan,
-    )
-    application.state.service = None
-
-    @application.get(
-        "/health",
-        response_model=HealthResponse,
-        responses={503: {"model": HealthResponse, "description": "Model hazır değil"}},
-    )
-    def health(request: Request):
-        loaded = request.app.state.service is not None
-        body = HealthResponse(
-            status="ready" if loaded else "not_ready",
-            model_loaded=loaded,
-            dataset_type="synthetic_demo",
-        )
-        if not loaded:
-            return JSONResponse(status_code=503, content=body.model_dump())
-        return body
-
-    @application.post(
-        "/analyze",
-        response_model=AnalyzeResponse,
-        responses={503: {"description": "Önce model eğitilmeli"}},
-    )
-    def analyze(payload: AnalyzeRequest, request: Request):
-        service = request.app.state.service
-        if service is None:
-            raise HTTPException(status_code=503, detail=NOT_READY_MESSAGE)
-        return service.analyze(payload.text)
-
-    return application
-
-
-app = create_app()
+app=create_app()

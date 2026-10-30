@@ -6,4 +6,6 @@
 *.toml text eol=lf
 *.yml text eol=lf
 *.txt text eol=lf
+*.csv text eol=lf
+data/banking77/LICENSE text eol=lf
 

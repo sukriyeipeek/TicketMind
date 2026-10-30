@@ -1,0 +1,24 @@
+{"id":"rag-01","question":"Kargo takip bağlantısını hangi bölümde bulabilirim?","relevant_ids":["FAQ-KARGO-01"]}
+{"id":"rag-02","question":"Kargom gelmedi, teslimat gecikti ve son hareket eski görünüyor.","relevant_ids":["FAQ-KARGO-02"]}
+{"id":"rag-03","question":"Teslimat adresini değiştirme talebi açabilir miyim?","relevant_ids":["FAQ-KARGO-03"]}
+{"id":"rag-04","question":"Kargo paketi hasarlı görünüyor, fotoğraf saklamam gerekiyor mu?","relevant_ids":["FAQ-KARGO-04"]}
+{"id":"rag-05","question":"Karttan iki kez ücret çekildi, ne paylaşmalıyım?","relevant_ids":["FAQ-ODEME-01"]}
+{"id":"rag-06","question":"Kart reddedildi ve ödeme başarısız yazıyor.","relevant_ids":["FAQ-ODEME-02"]}
+{"id":"rag-07","question":"Bekleyen provizyon ne zaman kalkar?","relevant_ids":["FAQ-ODEME-03"]}
+{"id":"rag-08","question":"Fatura hangi sekmede görüntülenir?","relevant_ids":["FAQ-ODEME-04"]}
+{"id":"rag-09","question":"İade talebi başlatmak için hangi düğmeyi kullanırım?","relevant_ids":["FAQ-IADE-01"]}
+{"id":"rag-10","question":"İade paketleme sırasında ürün parçalarını nasıl ambalajlamalıyım?","relevant_ids":["FAQ-IADE-02"]}
+{"id":"rag-11","question":"İade gönderisinin takip numarasını nereye eklerim?","relevant_ids":["FAQ-IADE-03"]}
+{"id":"rag-12","question":"İade sonrası geri ödeme durumu nasıl kontrol edilir?","relevant_ids":["FAQ-IADE-04"]}
+{"id":"rag-13","question":"Şifremi unuttum ve sıfırlama iletisi gelmiyor.","relevant_ids":["FAQ-TEKNIK-01"]}
+{"id":"rag-14","question":"Uygulama hata kodu veriyor, hangi bilgileri göndereyim?","relevant_ids":["FAQ-TEKNIK-02"]}
+{"id":"rag-15","question":"Tarayıcı boş ekran gösteriyor, sayfayı yenilesem olur mu?","relevant_ids":["FAQ-TEKNIK-03"]}
+{"id":"rag-16","question":"Ödeme formu ekran okuyucu ve klavye ile kullanılamıyor.","relevant_ids":["FAQ-TEKNIK-04"]}
+{"id":"rag-17","question":"KARGOM GELMEDİ; teslimatın son hareket tarihini bildireyim mi?","relevant_ids":["FAQ-KARGO-02"]}
+{"id":"rag-18","question":"ŞİFREMİ sıfırlarken gereksiz posta klasörüne bakmalı mıyım?","relevant_ids":["FAQ-TEKNIK-01"]}
+{"id":"rag-19","question":"Faturam eksik görünüyor, destek kaydı açabilir miyim?","relevant_ids":["FAQ-ODEME-04"]}
+{"id":"rag-20","question":"İade ambalajına talep numarası eklemem uygun mu?","relevant_ids":["FAQ-IADE-02"]}
+{"id":"rag-21","question":"Yarın Ankara'da yağmur yağacak mı?","relevant_ids":[]}
+{"id":"rag-22","question":"Kuantum dolanıklık deneylerini açıklayabilir misin?","relevant_ids":[]}
+{"id":"rag-23","question":"Merhaba, lütfen bana yardımcı olur musunuz?","relevant_ids":[]}
+{"id":"rag-24","question":"Galatasaray maçının skoru kaç?","relevant_ids":[]}

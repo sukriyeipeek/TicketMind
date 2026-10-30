@@ -1,0 +1,685 @@
+{
+  "dataset": "AI-authored synthetic silver annotations; not independently human validated",
+  "data_sha256": "4a8cd463e4252a3301105bd79934d228bf8655e3b617c70cdb897c3141e64f7f",
+  "limitations": [
+    "Rules and a small product dictionary, not a learned NER model.",
+    "Silver labels were written for this project; results do not estimate customer performance.",
+    "Unknown products and ambiguous words deliberately remain in this set; failures are retained."
+  ],
+  "matching": "exact field + start + end; end-exclusive Python character offsets",
+  "n": 24,
+  "micro": {
+    "tp": 26,
+    "fp": 3,
+    "fn": 5,
+    "precision": 0.896551724137931,
+    "recall": 0.8387096774193549,
+    "f1": 0.8666666666666666
+  },
+  "per_field": {
+    "error_code": {
+      "tp": 5,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "order_id": {
+      "tp": 10,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "product": {
+      "tp": 11,
+      "fp": 3,
+      "fn": 5,
+      "precision": 0.7857142857142857,
+      "recall": 0.6875,
+      "f1": 0.7333333333333334
+    }
+  },
+  "record_exact_match": 0.7083333333333334,
+  "examples": [
+    {
+      "id": "entity-silver-01",
+      "expected": [
+        {
+          "field": "order_id",
+          "value": "TM-9001",
+          "start": 0,
+          "end": 7
+        },
+        {
+          "field": "product",
+          "value": "kulaklığı",
+          "start": 22,
+          "end": 31
+        }
+      ],
+      "predicted": [
+        {
+          "field": "order_id",
+          "value": "TM-9001",
+          "start": 0,
+          "end": 7
+        },
+        {
+          "field": "product",
+          "value": "kulaklığı",
+          "start": 22,
+          "end": 31
+        }
+      ],
+      "exact_match": true,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "id": "entity-silver-02",
+      "expected": [
+        {
+          "field": "error_code",
+          "value": "E42",
+          "start": 16,
+          "end": 19
+        }
+      ],
+      "predicted": [
+        {
+          "field": "error_code",
+          "value": "E42",
+          "start": 16,
+          "end": 19
+        }
+      ],
+      "exact_match": true,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "id": "entity-silver-03",
+      "expected": [
+        {
+          "field": "order_id",
+          "value": "TM-9003",
+          "start": 0,
+          "end": 7
+        },
+        {
+          "field": "product",
+          "value": "kahve makinesini",
+          "start": 17,
+          "end": 33
+        }
+      ],
+      "predicted": [
+        {
+          "field": "order_id",
+          "value": "TM-9003",
+          "start": 0,
+          "end": 7
+        }
+      ],
+      "exact_match": false,
+      "false_positives": [],
+      "false_negatives": [
+        [
+          "product",
+          17,
+          33
+        ]
+      ]
+    },
+    {
+      "id": "entity-silver-04",
+      "expected": [
+        {
+          "field": "product",
+          "value": "Masa lambasını",
+          "start": 0,
+          "end": 14
+        }
+      ],
+      "predicted": [],
+      "exact_match": false,
+      "false_positives": [],
+      "false_negatives": [
+        [
+          "product",
+          0,
+          14
+        ]
+      ]
+    },
+    {
+      "id": "entity-silver-05",
+      "expected": [
+        {
+          "field": "product",
+          "value": "Telefonumu",
+          "start": 0,
+          "end": 10
+        },
+        {
+          "field": "order_id",
+          "value": "TM-9005",
+          "start": 26,
+          "end": 33
+        }
+      ],
+      "predicted": [
+        {
+          "field": "product",
+          "value": "Telefonumu",
+          "start": 0,
+          "end": 10
+        },
+        {
+          "field": "order_id",
+          "value": "TM-9005",
+          "start": 26,
+          "end": 33
+        }
+      ],
+      "exact_match": true,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "id": "entity-silver-06",
+      "expected": [
+        {
+          "field": "product",
+          "value": "Tabletin",
+          "start": 0,
+          "end": 8
+        }
+      ],
+      "predicted": [
+        {
+          "field": "product",
+          "value": "Tabletin",
+          "start": 0,
+          "end": 8
+        }
+      ],
+      "exact_match": true,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "id": "entity-silver-07",
+      "expected": [
+        {
+          "field": "product",
+          "value": "Bilgisayarımı",
+          "start": 0,
+          "end": 13
+        }
+      ],
+      "predicted": [
+        {
+          "field": "product",
+          "value": "Bilgisayarımı",
+          "start": 0,
+          "end": 13
+        }
+      ],
+      "exact_match": true,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "id": "entity-silver-08",
+      "expected": [
+        {
+          "field": "product",
+          "value": "Şarj cihazını",
+          "start": 0,
+          "end": 13
+        },
+        {
+          "field": "order_id",
+          "value": "TM-9008",
+          "start": 47,
+          "end": 54
+        }
+      ],
+      "predicted": [
+        {
+          "field": "product",
+          "value": "Şarj cihazını",
+          "start": 0,
+          "end": 13
+        },
+        {
+          "field": "order_id",
+          "value": "TM-9008",
+          "start": 47,
+          "end": 54
+        }
+      ],
+      "exact_match": true,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "id": "entity-silver-09",
+      "expected": [
+        {
+          "field": "product",
+          "value": "Akıllı saatimi",
+          "start": 0,
+          "end": 14
+        }
+      ],
+      "predicted": [
+        {
+          "field": "product",
+          "value": "Akıllı saatimi",
+          "start": 0,
+          "end": 14
+        }
+      ],
+      "exact_match": true,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "id": "entity-silver-10",
+      "expected": [
+        {
+          "field": "product",
+          "value": "Oyuncu klavyesi",
+          "start": 0,
+          "end": 15
+        }
+      ],
+      "predicted": [
+        {
+          "field": "product",
+          "value": "klavyesi",
+          "start": 7,
+          "end": 15
+        }
+      ],
+      "exact_match": false,
+      "false_positives": [
+        [
+          "product",
+          7,
+          15
+        ]
+      ],
+      "false_negatives": [
+        [
+          "product",
+          0,
+          15
+        ]
+      ]
+    },
+    {
+      "id": "entity-silver-11",
+      "expected": [
+        {
+          "field": "product",
+          "value": "Fareyi",
+          "start": 0,
+          "end": 6
+        },
+        {
+          "field": "error_code",
+          "value": "E31",
+          "start": 23,
+          "end": 26
+        }
+      ],
+      "predicted": [
+        {
+          "field": "product",
+          "value": "Fareyi",
+          "start": 0,
+          "end": 6
+        },
+        {
+          "field": "error_code",
+          "value": "E31",
+          "start": 23,
+          "end": 26
+        }
+      ],
+      "exact_match": true,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "id": "entity-silver-12",
+      "expected": [
+        {
+          "field": "order_id",
+          "value": "TM-9012",
+          "start": 0,
+          "end": 7
+        },
+        {
+          "field": "product",
+          "value": "sırt çantası",
+          "start": 20,
+          "end": 32
+        }
+      ],
+      "predicted": [
+        {
+          "field": "order_id",
+          "value": "TM-9012",
+          "start": 0,
+          "end": 7
+        }
+      ],
+      "exact_match": false,
+      "false_positives": [],
+      "false_negatives": [
+        [
+          "product",
+          20,
+          32
+        ]
+      ]
+    },
+    {
+      "id": "entity-silver-13",
+      "expected": [],
+      "predicted": [
+        {
+          "field": "product",
+          "value": "fare",
+          "start": 18,
+          "end": 22
+        }
+      ],
+      "exact_match": false,
+      "false_positives": [
+        [
+          "product",
+          18,
+          22
+        ]
+      ],
+      "false_negatives": []
+    },
+    {
+      "id": "entity-silver-14",
+      "expected": [],
+      "predicted": [],
+      "exact_match": true,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "id": "entity-silver-15",
+      "expected": [
+        {
+          "field": "product",
+          "value": "Monitörümde",
+          "start": 0,
+          "end": 11
+        },
+        {
+          "field": "error_code",
+          "value": "E512",
+          "start": 12,
+          "end": 16
+        },
+        {
+          "field": "order_id",
+          "value": "TM-9015",
+          "start": 30,
+          "end": 37
+        }
+      ],
+      "predicted": [
+        {
+          "field": "product",
+          "value": "Monitörümde",
+          "start": 0,
+          "end": 11
+        },
+        {
+          "field": "error_code",
+          "value": "E512",
+          "start": 12,
+          "end": 16
+        },
+        {
+          "field": "order_id",
+          "value": "TM-9015",
+          "start": 30,
+          "end": 37
+        }
+      ],
+      "exact_match": true,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "id": "entity-silver-16",
+      "expected": [
+        {
+          "field": "product",
+          "value": "Hoparlörü",
+          "start": 0,
+          "end": 9
+        },
+        {
+          "field": "order_id",
+          "value": "TM-9016",
+          "start": 10,
+          "end": 17
+        }
+      ],
+      "predicted": [
+        {
+          "field": "product",
+          "value": "Hoparlörü",
+          "start": 0,
+          "end": 9
+        },
+        {
+          "field": "order_id",
+          "value": "TM-9016",
+          "start": 10,
+          "end": 17
+        }
+      ],
+      "exact_match": true,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "id": "entity-silver-17",
+      "expected": [
+        {
+          "field": "order_id",
+          "value": "TM-9017",
+          "start": 0,
+          "end": 7
+        },
+        {
+          "field": "order_id",
+          "value": "TM-9018",
+          "start": 11,
+          "end": 18
+        }
+      ],
+      "predicted": [
+        {
+          "field": "order_id",
+          "value": "TM-9017",
+          "start": 0,
+          "end": 7
+        },
+        {
+          "field": "order_id",
+          "value": "TM-9018",
+          "start": 11,
+          "end": 18
+        }
+      ],
+      "exact_match": true,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "id": "entity-silver-18",
+      "expected": [
+        {
+          "field": "error_code",
+          "value": "E42",
+          "start": 5,
+          "end": 8
+        },
+        {
+          "field": "error_code",
+          "value": "E61",
+          "start": 19,
+          "end": 22
+        }
+      ],
+      "predicted": [
+        {
+          "field": "error_code",
+          "value": "E42",
+          "start": 5,
+          "end": 8
+        },
+        {
+          "field": "error_code",
+          "value": "E61",
+          "start": 19,
+          "end": 22
+        }
+      ],
+      "exact_match": true,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "id": "entity-silver-19",
+      "expected": [
+        {
+          "field": "product",
+          "value": "Kulaklık",
+          "start": 0,
+          "end": 8
+        },
+        {
+          "field": "product",
+          "value": "şarj cihazı",
+          "start": 12,
+          "end": 23
+        }
+      ],
+      "predicted": [
+        {
+          "field": "product",
+          "value": "Kulaklık",
+          "start": 0,
+          "end": 8
+        },
+        {
+          "field": "product",
+          "value": "şarj cihazı",
+          "start": 12,
+          "end": 23
+        }
+      ],
+      "exact_match": true,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "id": "entity-silver-20",
+      "expected": [],
+      "predicted": [],
+      "exact_match": true,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "id": "entity-silver-21",
+      "expected": [],
+      "predicted": [],
+      "exact_match": true,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "id": "entity-silver-22",
+      "expected": [],
+      "predicted": [],
+      "exact_match": true,
+      "false_positives": [],
+      "false_negatives": []
+    },
+    {
+      "id": "entity-silver-23",
+      "expected": [],
+      "predicted": [
+        {
+          "field": "product",
+          "value": "Telefonla",
+          "start": 0,
+          "end": 9
+        }
+      ],
+      "exact_match": false,
+      "false_positives": [
+        [
+          "product",
+          0,
+          9
+        ]
+      ],
+      "false_negatives": []
+    },
+    {
+      "id": "entity-silver-24",
+      "expected": [
+        {
+          "field": "product",
+          "value": "Elektrikli süpürgemi",
+          "start": 0,
+          "end": 20
+        },
+        {
+          "field": "order_id",
+          "value": "TM-9024",
+          "start": 38,
+          "end": 45
+        }
+      ],
+      "predicted": [
+        {
+          "field": "order_id",
+          "value": "TM-9024",
+          "start": 38,
+          "end": 45
+        }
+      ],
+      "exact_match": false,
+      "false_positives": [],
+      "false_negatives": [
+        [
+          "product",
+          0,
+          20
+        ]
+      ]
+    }
+  ]
+}

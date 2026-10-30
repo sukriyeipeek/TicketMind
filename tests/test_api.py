@@ -22,6 +22,7 @@ def ready_app(monkeypatch):
             return {
                 "category": "iade",
                 "model_score": 0.4,
+                "category_scores": {"iade": 0.4, "kargo": 0.2, "odeme": 0.2, "teknik": 0.2},
                 "score_type": "uncalibrated_model_score",
                 "needs_review": True,
                 "review_reasons": ["synthetic_demo_model"],

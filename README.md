@@ -1,5 +1,42 @@
 # TicketMind-TR
 
+## v0.2 · Beş aşamalı öğrenme atölyesi
+
+- **Analiz:** dört kategorinin kalibre edilmemiş skorları; başlangıç, kelime, karakter ve eğitilmiş TinyBERT model seçimi.
+- **Veri atölyesi:** kendi mesajını ve alan konumlarını etiketleme, yerel SQLite kayıtları, JSONL indirme. Kişisel kayıtlar Git'e eklenmez; eğitim/test dosyalarına otomatik karışmaz. 32 yeni sentetik geliştirme örneği ayrıca görüntülenir.
+- **Model deneyleri:** kelime/karakter TF-IDF karşılaştırması ve isteğe bağlı gerçek Türkçe TinyBERT fine-tuning; arka plan işi ve durum takibi. Seçim yalnız doğrulama macro F1 ile yapılır.
+- **Alan değerlendirmesi:** 24 sentetik silver örnekte tam alan/konum precision, recall ve F1; hatalar saklanır.
+- **Kaynaklı yanıt:** 16 kurgusal FAQ üzerinde çevrimdışı kelime arama veya Ollama embedding; pasaj gösterimi veya yerel LLM taslağı. Kaynak ID ve alıntı kontrolü, cevabın tüm iddialarının doğru olduğunu garanti etmez.
+
+### Yeni komutlar
+
+```powershell
+python -m ticketmind.experiments
+python -m ticketmind.entity_eval
+python -m ticketmind.rag_eval --output reports/rag.json
+```
+
+Transformer için önce resmi CPU PyTorch paketini ve transformer eklentisini kurun:
+
+```powershell
+python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+python -m pip install -e ".[transformer]"
+python -m ticketmind.experiments --include-transformer --epochs 3
+```
+
+İlk transformer koşusu sabit HF sürümünden yaklaşık 18 MB model indirir. `HF_HOME` ile cache dizini belirlenebilir. Ağ olmadan hazır cache için `--local-files-only` kullanın. Model ağırlıkları depoya eklenmez.
+
+Gerçek RAG için yerel Ollama üzerinde `embeddinggemma` ve bir üretim modeli gerekir:
+
+```powershell
+ollama pull embeddinggemma
+$env:TICKETMIND_LLM_MODEL="qwen3.5:4b"
+```
+
+Varsayılan üretim modeli `qwen2.5:7b`'dir. Paket indirme/eğitim sunucu açılışında başlamaz. UI'deki deney düğmesi açık bir eğitim isteğidir. LLM yoksa açık durum mesajı döner; pasaj modu LLM kullanmaz.
+
+Yeni belgeler: [Veri atölyesi](docs/data-workbench.md), [deneyler](docs/experiments.md), [RAG](docs/rag.md). Aşağıdaki v0.1 açıklamaları başlangıç modelinin tarihsel sözleşmesini anlatır; v0.2 sonuçları `reports/model_comparison.md`, `reports/entities.md`, `reports/rag.json` dosyalarındadır. Eski test geliştirmede incelendiği için yeni bağımsız holdout sayılmaz. Kullanıcı tarafından henüz insan yazımı bağımsız test verisi sağlanmamıştır.
+
 [![Tests](https://github.com/sukriyeipeek/TicketMind-TR/actions/workflows/tests.yml/badge.svg)](https://github.com/sukriyeipeek/TicketMind-TR/actions/workflows/tests.yml)
 
 Türkçe müşteri destek mesajlarını **kargo, ödeme, iade ve teknik sorun** niyetlerine ayıran bir NLP öğrenme projesi. Başlangıç modeli TF-IDF + lojistik regresyondur. Sipariş numarası, hata kodu ve küçük bir ürün sözlüğündeki ifadeler orijinal metindeki konumlarıyla çıkarılır.

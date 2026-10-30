@@ -1,11 +1,6 @@
-"""Sınıflandırıcı için hafif normalleştirme; orijinal metin değiştirilmez."""
-
+"""Stable import path for English preprocessing in saved model artifacts."""
 import re
 import unicodedata
 
-
-def normalize_text(text: str) -> str:
-    # Python'un varsayılan lower() davranışı Türkçe I/İ için yeterli değildir.
-    normalized = unicodedata.normalize("NFC", text).translate(str.maketrans({"I": "ı", "İ": "i"})).lower()
-    return re.sub(r"\s+", " ", normalized).strip()
-
+def normalize_text(text):
+    return re.sub(r'\s+', ' ', unicodedata.normalize('NFKC', text).casefold()).strip()

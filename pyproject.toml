@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ticketmind-tr"
-version = "0.2.0"
-description = "Türkçe destek talepleri için açıklanabilir NLP başlangıç projesi"
+version = "0.3.0"
+description = "English Banking77 intent classification using official PolyAI data"
 readme = "README.md"
 requires-python = ">=3.11,<3.14"
 dependencies = [
@@ -19,14 +19,9 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<10"]
-transformer = ["torch>=2.6,<3", "transformers>=4.57,<5", "safetensors>=0.6,<1"]
 
 [project.scripts]
-ticketmind-train = "ticketmind.train:main"
-ticketmind-predict = "ticketmind.predict:main"
-ticketmind-compare = "ticketmind.experiments:main"
-ticketmind-entity-eval = "ticketmind.entity_eval:main"
-ticketmind-rag-eval = "ticketmind.rag_eval:main"
+ticketmind-train = "ticketmind.banking:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
